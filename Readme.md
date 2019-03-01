@@ -1,8 +1,7 @@
 ## Instruction
 Create a web page presentation using R Markdown that features a plot created with Plotly. Host your webpage on either GitHub Pages, RPubs, or NeoCities. Your webpage must contain the date that you created the document, and it must contain a plot created with Plotly. We would love to see you show off your creativity!
 
-Review criterialess 
-The rubric contains the following two questions:
+For this assignment I have used Air Quality data. I am analyzing Ozone levels in New York city over the period from May 1, 1973 to September 30, 1973
 
-Does the web page feature a date and is this date less than two months before the date that you're grading this assignment?
-Is the web page a presentation and does it feature an interactive plot that appears to have been created with Plotly?
+You can findy presentation generated from R studio for Plotly on http://rpubs.com/Utkarsha/472254.
+
