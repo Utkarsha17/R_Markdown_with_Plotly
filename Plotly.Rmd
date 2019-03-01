@@ -1,0 +1,54 @@
+---
+title: "Plotly"
+author: "Utkarsha Patil"
+date: "February 28, 2019"
+output:
+  slidy_presentation: default
+  ioslides_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Synopsis
+This is an exploratory analysis of an air quality data set.It contains daily air quality measurements in New York City, from May 1, 1973 to September 30, 1973. Four data points were to be measured each day along with the date. The data were obtained from the New York State Department of Conservation (ozone data) and the National Weather Service (meteorological data).
+
+Ozone: Mean ozone in parts per billion from 1300 to 1500 hours at Roosevelt Island
+Solar.R: Solar radiation in Langleys in the frequency band 4000-7700 Angstroms from 0800 to 1200 hours at Central Park
+Wind: Average wind speed in miles per hour at 0700 and 1000 hours at LaGuardia Airport
+Temp: Maximum daily temperature in degrees Fahrenheit at La Guardia Airport.
+
+## Data
+We are reading the dataset in from a simple text file (CSV) to a dataframe named airquality. 
+
+
+## Data processing and Output
+Interactive map for this project is Heatmap for Ozone levels for given months. 
+
+```{r}
+library(ggplot2)
+library(plotly)
+library(plyr)
+library(dplyr)
+library(datasets)
+library(reshape2)
+```
+
+```{r}
+data(airquality)
+airquality$Month=as.factor(airquality$Month)
+ozone_daily=airquality[,c(1,5,6)]
+ozone_daily=dcast(ozone_daily,Day~Month,value.var = "Ozone")
+ozone_daily=as.matrix(ozone_daily[,-1]) ## Convert to Matrix
+colnames(ozone_daily)=c("May","June","July","August","September")
+ozone_daily
+```
+```{r}
+#Interactive HeatMap for Daily Ozone level from May to September 1973
+
+plot_ly(z=ozone_daily,colorscale="Greens",x=colnames(ozone_daily),type="heatmap",colorbar = list(title = "Ozone Levels (parts per billion)"))%>%layout(title = "Daily Ozone Levels in New York, May to September 1973", xaxis = list(title = "Month"),yaxis = list(title = "Day"))
+#We have NA data for some days of all months so its has no color bar. 
+```
+
